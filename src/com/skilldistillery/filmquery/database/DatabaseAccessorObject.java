@@ -21,15 +21,15 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			String user = "student";
 			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT id, title, description, release_year, language_id, rental_duration, ";
-			sql += " rental_rate, length, replacement_cost, rating, special_features "
+			String sql = "SELECT id, title, description, release_year, language_id, ";
+			sql += " rating "
 					+ " FROM film JOIN film_actor ON film.id = film_actor.film_id " + " WHERE actor_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				film = new Film();
-				film.setId(rs.getInt("id"));
+//				film.setId(rs.getInt("id"));
 				film.setTitle(rs.getString("title"));
 				film.setDescrip(rs.getString("description"));
 				film.setRating(rs.getString("rating"));

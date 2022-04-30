@@ -13,8 +13,8 @@ public class FilmQueryApp {
 
   public static void main(String[] args) {
     FilmQueryApp app = new FilmQueryApp();
-    app.test();
-//    app.launch();
+//    app.test();
+    app.launch();
   }
 
   private void test() {
@@ -34,6 +34,18 @@ public class FilmQueryApp {
 	  System.out.println("1. Look up film by ID. ");
 	  System.out.println("2. Look up film by a search keyword.");
 	  System.out.println("3. Exit");
+	  int choice = input.nextInt();
+	  input.nextLine();
+	  while(true) {
+		  if (choice == 1) {
+			  System.out.println("Please enter the film's ID number that you would like to pull up: ");
+			  int movieId = input.nextInt();
+			 System.out.println(db.findFilmById(movieId)); 
+			  
+			  
+		  }
+		  
+	  }
      
   }
 
