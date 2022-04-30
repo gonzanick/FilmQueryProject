@@ -21,9 +21,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			String user = "student";
 			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT id, title, description, release_year, language_id, ";
-			sql += " rating "
-					+ " FROM film JOIN film_actor ON film.id = film_actor.film_id " + " WHERE actor_id = ?";
+			String sql = "SELECT title, description, release_year, language_id,language.name, rating, film.id "
+					+ "FROM film JOIN film_actor ON film.id = film_actor.film_id "
+					+ "JOIN language ON film.language_id = language.id  WHERE actor_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
