@@ -34,7 +34,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setDescrip(rs.getString("description"));
 				film.setRating(rs.getString("rating"));
 				film.setReleaseYear(rs.getShort("release_year"));
-				film.setLangID(rs.getInt("language_id"));
+				film.setLang(rs.getString("language.name"));
 //				int rentDur = rs.getInt(6);
 //				double rentRate = rs.getDouble(7);
 //				Integer length = rs.getInt(8);
@@ -110,6 +110,35 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		return actors;
 
+	}
+	
+	public Film searchByKeyword(String keyWord) {
+		Film key = null;
+		try {
+			String user = "student";
+			String pass = "student";
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT title, description, release_year, language_id,language.name, rating "
+					+ "FROM film JOIN language ON film.language_id = language.id "
+					+ "WHERE title LIKE ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + keyWord + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				key = new Film();
+				key.setTitle(rs.getString("title"));
+				key.setDescrip(rs.getString("description"));
+				key.setRating(rs.getString("rating"));
+				key.setReleaseYear(rs.getShort("release_year"));
+				key.setLang(rs.getString("language.name"));
+				
+			}
+		
+		} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		return key;
 	}
 
 }

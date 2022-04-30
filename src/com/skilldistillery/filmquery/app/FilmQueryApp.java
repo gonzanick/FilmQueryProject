@@ -42,7 +42,14 @@ public class FilmQueryApp {
 			  int movieId = input.nextInt();
 			 System.out.println(db.findFilmById(movieId)); 
 			  
+		  } else if (choice == 2) {
+			  System.out.println("Please enter in a keyword to look up a film: ");
+			  String keyW = input.next();
+			  System.out.println(db.searchByKeyword(keyW));
 			  
+		  }else if (choice == 3) {
+			  System.out.println("You have exited the program.");
+			  break;
 		  }
 		  
 	  }
