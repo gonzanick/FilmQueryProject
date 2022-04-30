@@ -7,7 +7,7 @@ public class Actor {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private List<Film> film;
+	private List<Film> films;
 
 	public Actor() {
 
@@ -38,21 +38,22 @@ public class Actor {
 	}
 
 	public List<Film> getFilm() {
-		return film;
+		return films;
 	}
 
 	public void setFilm(List<Film> film) {
-		this.film = film;
+		this.films = film;
 	}
 
 	@Override
 	public String toString() {
-		return "Actor id = " + id + ", first name = " + firstName + ", last name = " + lastName + ", film = " + film;
+		return "Name " + firstName + " " +
+				 lastName + "\n";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(film, firstName, id, lastName);
+		return Objects.hash(films, firstName, id, lastName);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		return Objects.equals(film, other.film) && Objects.equals(firstName, other.firstName) && id == other.id
+		return Objects.equals(films, other.films) && Objects.equals(firstName, other.firstName) && id == other.id
 				&& Objects.equals(lastName, other.lastName);
 	}
 

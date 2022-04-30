@@ -1,28 +1,33 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Film {
 	private int id;
 	private String title;
 	private String descrip;
-	private int releaseYear;
+	private Integer releaseYear;
 	private int langID;
 	private int rentDur;
 	private double rentRate;
-	private int length;
+	private Integer length;
 	private double replaceCost;
 	private String rating;
 	private String specialFeat;
-	
+	private List<Actor> actors;
+
 	public Film() {
-		
+
 	}
 
-	public Film(int id, String title, String descrip, short releaseYear,
-			int langID, int rentDur, double rentRate, int length, double replaceCost,
-			String rating, String specialFeat) {
+	public Film(int id, String title, String descrip, short releaseYear, int langID, int rentDur, double rentRate,
+			int length, double replaceCost, String rating, String specialFeat) {
 
+	}
+	
+	public void setActor(Actor actor) {
+		this.actors.add(actor);
 	}
 
 	public int getId() {
@@ -115,9 +120,8 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film id =" + id + ", title = " + title + ", descrip = " + descrip + ", releaseYear = " + releaseYear
-				+ ", langID = " + langID + ", rentDur = " + rentDur + ", rentRate = " + rentRate + ", length = "
-				+ length + ", replaceCost = " + replaceCost + ", rating = " + rating + ", specialFeat = " + specialFeat;
+		return "Film title " + title + ", rating " + rating + ", realease year " + releaseYear + "\n " + "description "
+				+ descrip + "actor " + actors + "\n";
 	}
 
 	@Override

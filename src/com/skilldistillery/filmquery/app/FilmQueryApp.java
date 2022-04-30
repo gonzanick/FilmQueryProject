@@ -7,6 +7,7 @@ import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
+	Scanner input = new Scanner(System.in);
   
   DatabaseAccessor db = new DatabaseAccessorObject();
 
@@ -17,12 +18,11 @@ public class FilmQueryApp {
   }
 
   private void test() {
-    Film film = db.findFilmById(1);
-    System.out.println(film);
+    //db.findActorsByFilmId(1);
+    System.out.println(db.findActorsByFilmId(22));
   }
 
   private void launch() {
-    Scanner input = new Scanner(System.in);
     
     startUserInterface(input);
     
@@ -30,7 +30,11 @@ public class FilmQueryApp {
   }
 
   private void startUserInterface(Scanner input) {
-    
+	  System.out.println("       Menu           ");
+	  System.out.println("1. Look up film by ID. ");
+	  System.out.println("2. Look up film by a search keyword.");
+	  System.out.println("3. Exit");
+     
   }
 
 }
