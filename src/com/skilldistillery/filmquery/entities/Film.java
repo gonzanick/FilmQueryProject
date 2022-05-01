@@ -3,6 +3,8 @@ package com.skilldistillery.filmquery.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+
 public class Film {
 	private int id;
 	private String title;
@@ -23,12 +25,23 @@ public class Film {
 
 	public Film(int id, String title, String descrip, short releaseYear, int langID, int rentDur, double rentRate,
 			int length, double replaceCost, String rating, String specialFeat) {
+		DatabaseAccessorObject dao = new DatabaseAccessorObject();
+		List<Actor> actor = dao.findActorsByFilmId(id);
+		this.actors = actor;
 
 	}
 	
-	public void setActor(Actor actor) {
-		this.actors.add(actor);
+	public List<Actor> getActors() {
+		return actors;
 	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+//	public void setActor(Actor actor) {
+//		this.actors.add(actor);
+//	}
 
 	public int getId() {
 		return id;
@@ -121,7 +134,7 @@ public class Film {
 	@Override
 	public String toString() {
 		return "Film title: " + title + ", rated " + rating + ", realease year " + releaseYear + "\n " + "Description: "
-				+ descrip + ". " + "Language: " + lang + "\n";
+				+ descrip + ". " + "Language: " + lang + "\n" + "Cast: ";
 	}
 
 	@Override

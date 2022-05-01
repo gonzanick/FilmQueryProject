@@ -16,25 +16,32 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
 
 	public Film findFilmById(int filmId) {
+//		List<Actor> actors = new ArrayList<>();
+//		Actor actor = null;
 		Film film = null;
 		try {
 			String user = "student";
 			String pass = "student";
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT title, description, release_year, language_id,language.name, rating, film.id "
+			String sql = "SELECT title,first_name, last_name, description, release_year, language_id,language.name, rating, film.id "
 					+ "FROM film JOIN film_actor ON film.id = film_actor.film_id "
-					+ "JOIN language ON film.language_id = language.id  WHERE actor_id = ?";
+					+ "JOIN language ON film.language_id = language.id "
+					+ "JOIN actor ON actor.id = film_actor.actor_id WHERE film_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				film = new Film();
-//				film.setId(rs.getInt("id"));
+//				actor = new Actor();
 				film.setTitle(rs.getString("title"));
 				film.setDescrip(rs.getString("description"));
 				film.setRating(rs.getString("rating"));
 				film.setReleaseYear(rs.getShort("release_year"));
 				film.setLang(rs.getString("language.name"));
+//				actor.setFirstName(rs.getString("first_name"));
+//				actor.setLastName(rs.getString("last_name"));
+//				actors.add(actor);
+//				film.setId(rs.getInt("id"));
 //				int rentDur = rs.getInt(6);
 //				double rentRate = rs.getDouble(7);
 //				Integer length = rs.getInt(8);
