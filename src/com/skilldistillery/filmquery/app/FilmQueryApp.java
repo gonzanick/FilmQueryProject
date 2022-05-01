@@ -30,13 +30,15 @@ public class FilmQueryApp {
 	}
 
 	private void startUserInterface(Scanner input) {
-		System.out.println("       Menu           ");
-		System.out.println("1. Look up film by ID. ");
-		System.out.println("2. Look up film by a search keyword.");
-		System.out.println("3. Exit");
-		int choice = input.nextInt();
-		input.nextLine();
-		while (true) {
+		boolean bChoice = true;
+		while (bChoice) {
+
+			System.out.println("       Menu           ");
+			System.out.println("1. Look up film by ID. ");
+			System.out.println("2. Look up film by a search keyword.");
+			System.out.println("3. Exit");
+			int choice = input.nextInt();
+			input.nextLine();
 			if (choice == 1) {
 				System.out.println("Please enter the film's ID number that you would like to pull up: ");
 				int movieId = input.nextInt();
@@ -44,9 +46,9 @@ public class FilmQueryApp {
 					System.out.println("No film on record. Please try again.");
 					continue;
 				}
-				
+
 				System.out.println(db.findFilmById(movieId));
-				System.out.println(db.findActorsByFilmId(movieId));
+				continue;
 
 			} else if (choice == 2) {
 				System.out.println("Please enter in a keyword to look up a film: ");
@@ -60,8 +62,8 @@ public class FilmQueryApp {
 			} else if (choice == 3) {
 				System.out.println("You have exited the program.");
 				break;
-			
-			} 
+
+			}
 
 		}
 
